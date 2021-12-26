@@ -32,8 +32,7 @@ def create_user(name: str, email: str, password: str) -> Optional[User]:
 
 
 def hash_text(text: str) -> str:
-    hashed_text = crypto.encrypt(text, rounds=171204)
-    return hashed_text
+    return crypto.encrypt(text, rounds=171204)
 
 
 def verify_hash(hashed_text: str, plain_text: str) -> bool:
@@ -55,5 +54,4 @@ def login_user(email: str, password: str) -> Optional[User]:
 
 def find_user_by_id(user_id: int) -> Optional[User]:
     session = db_session.create_session()
-    user = session.query(User).filter(User.id == user_id).first()
-    return user
+    return session.query(User).filter(User.id == user_id).first()
